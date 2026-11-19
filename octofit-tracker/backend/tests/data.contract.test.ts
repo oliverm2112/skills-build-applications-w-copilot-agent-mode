@@ -109,7 +109,6 @@ describe('OctoFit data contract', () => {
       expect(robocats).toBeTruthy();
       if (!mona || !hubot || !octocats || !robocats) throw new Error('Seed did not create all demo users and teams');
 
-      
       expect(mona.team?.toString()).toBe(octocats._id.toString());
       expect(hubot.team?.toString()).toBe(robocats._id.toString());
       expect(await Activity.exists({ user: mona._id, team: octocats._id, type: 'run' })).toBeTruthy();
