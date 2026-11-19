@@ -20,6 +20,7 @@ beforeEach(async () => {
   await Promise.all([Activity.deleteMany({}), Team.deleteMany({}), User.deleteMany({}), Workout.deleteMany({})]);
 });
 
+
 async function createUserAndTeam(name: string, email: string, mascot: string, teamName = `${name} team`) {
   const team = await Team.create({ name: teamName, mascot, members: [] });
   const user = await User.create({ name, email, team: team._id, fitnessGoal: 'endurance' });
