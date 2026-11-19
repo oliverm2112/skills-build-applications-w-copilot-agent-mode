@@ -1,11 +1,13 @@
+import { getJson } from '../api/client.js';
 import { useApiData } from '../hooks/useApiData.js';
 import { CapabilityCard } from './CapabilityCard.js';
 
 type Team = { _id?: string; name: string; mascot?: string; members?: Array<string | { name?: string }> };
 type TeamsResponse = { teams: Team[] };
+const loadTeams = () => getJson<TeamsResponse>('/api/teams');
 
 export default function Teams() {
-  const state = useApiData<TeamsResponse>('/api/teams');
+  const state = useApiData(loadTeams);
   return (
     <CapabilityCard title="Teams" description="Manage teams and members.">
       {state.status === 'loading' && <p role="status">Loading teams...</p>}

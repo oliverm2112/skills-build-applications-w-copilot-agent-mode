@@ -1,11 +1,13 @@
+import { getJson } from '../api/client.js';
 import { useApiData } from '../hooks/useApiData.js';
 import { CapabilityCard } from './CapabilityCard.js';
 
 type LeaderboardEntry = { teamName: string; totalPoints: number; rank: number };
 type LeaderboardResponse = { leaderboard: LeaderboardEntry[] };
+const loadLeaderboard = () => getJson<LeaderboardResponse>('/api/leaderboard');
 
 export default function Leaderboard() {
-  const state = useApiData<LeaderboardResponse>('/api/leaderboard');
+  const state = useApiData(loadLeaderboard);
   return (
     <CapabilityCard title="Leaderboard" description="Compare team point totals.">
       {state.status === 'loading' && <p role="status">Loading leaderboard...</p>}

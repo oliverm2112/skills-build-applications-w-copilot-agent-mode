@@ -1,11 +1,13 @@
+import { getJson } from '../api/client.js';
 import { useApiData } from '../hooks/useApiData.js';
 import { CapabilityCard } from './CapabilityCard.js';
 
 type Activity = { _id?: string; type: string; minutes: number; points: number };
 type ActivitiesResponse = { activities: Activity[] };
+const loadActivities = () => getJson<ActivitiesResponse>('/api/activities');
 
 export default function Activities() {
-  const state = useApiData<ActivitiesResponse>('/api/activities');
+  const state = useApiData(loadActivities);
   return (
     <CapabilityCard title="Activities" description="Track student activity minutes and points.">
       {state.status === 'loading' && <p role="status">Loading activities...</p>}
