@@ -93,6 +93,7 @@ describe('OctoFit data contract', () => {
         return result;
       };
 
+      
       await seed();
       const first = await counts();
       expect(first.users).toBeGreaterThanOrEqual(3);
