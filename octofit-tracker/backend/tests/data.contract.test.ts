@@ -56,6 +56,7 @@ describe('OctoFit data contract', () => {
         team: sentinelTeam._id,
         fitnessGoal: 'mobility',
       });
+
       await Team.updateOne({ _id: sentinelTeam._id }, { $addToSet: { members: sentinelUser._id } });
       const previousTeam = await Team.create({ name: 'Previous team', mascot: 'Mona', members: [] });
       const existingMona = await User.create({

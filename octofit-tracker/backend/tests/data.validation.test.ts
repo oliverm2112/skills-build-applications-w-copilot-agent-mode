@@ -15,6 +15,7 @@ describe('OctoFit data validation', () => {
     expect(teamError?.errors.name).toBeDefined();
     expect(teamError?.errors.mascot).toBeDefined();
 
+    
     const activityError = new Activity({
       user: new mongoose.Types.ObjectId(),
       team: new mongoose.Types.ObjectId(),
